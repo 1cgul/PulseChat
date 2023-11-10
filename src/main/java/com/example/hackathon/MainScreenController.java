@@ -19,7 +19,10 @@ public class MainScreenController {
 
     @FXML
     void sendMessage(ActionEvent event) {
-
+        chatBox.setText(chatBox.getText() + "\n" + App.currentUser + ": " + tf_msg.getText());
+        System.out.println(chatBox.getText() + "\n" + App.currentUser + ": " + tf_msg.getText());
+        tf_msg.setText("");
     }
-
 }
+
+

@@ -24,12 +24,14 @@ public class LoginController {
     protected void onChatButtonClick(ActionEvent event) throws IOException {
 
         if(tf_username.getLength() >= 3){
+            App.currentUser = tf_username.getText();
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main-screen.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
             scene.getStylesheets().add(getClass().getResource("/styling/dracula.css").toExternalForm());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+
         }
         else{
             errorLabel.setText("Your username needs to be greater than 3 characters!");
