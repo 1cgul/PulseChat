@@ -15,7 +15,6 @@ public class Websocket {
         sessions.add(session);
         sendMessageToAll("User connected: " + session.getId());
     }
-
     @OnMessage
     public void onMessage(String message, Session session) {
         sendMessageToAll(session.getId() + ": " + message);
@@ -26,12 +25,10 @@ public class Websocket {
         sessions.remove(session);
         sendMessageToAll("User disconnected: " + session.getId());
     }
-
     @OnError
     public void onError(Throwable t) {
         t.printStackTrace();
     }
-
     private void sendMessageToAll(String message) {
         for (Session session : sessions) {
             try {
