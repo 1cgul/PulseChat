@@ -1,14 +1,18 @@
 package com.example.hackathon;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class LoginController {
     @FXML
-    private Label welcomeText;
+    private Button chatBtn;
+    @FXML
+    private TextField tf_username;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onChatButtonClick() {
+
     }
 }
