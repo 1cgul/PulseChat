@@ -1,5 +1,6 @@
 package com.example.hackathon;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,12 +15,11 @@ public class LoginController {
     @FXML
     protected void onChatButtonClick() {
 
-<<<<<<< Updated upstream
-=======
+    }
+
     @FXML
     void Login(ActionEvent event) {
-        User userToLogin = new User(usernameTxt.getText());
+        User userToLogin = new User(tf_username.getText());
 
->>>>>>> Stashed changes
     }
 }
