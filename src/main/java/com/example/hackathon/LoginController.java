@@ -14,5 +14,12 @@ public class LoginController {
     @FXML
     protected void onChatButtonClick() {
 
+<<<<<<< Updated upstream
+=======
+    @FXML
+    void Login(ActionEvent event) {
+        User userToLogin = new User(usernameTxt.getText());
+
+>>>>>>> Stashed changes
     }
 }
