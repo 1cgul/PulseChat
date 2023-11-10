@@ -1,28 +1,44 @@
 package com.example.hackathon.websocket;
+
 import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
+@ServerEndpoint("/chat")
 public class Websocket {
-    @ServerEndpoint(value = "/chat/{username}")
-    public class ChatEndpoint {
+    private static Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
+    @OnOpen
+    public void onOpen(Session session) {
+        sessions.add(session);
+        sendMessageToAll("User connected: " + session.getId());
+    }
 
-        @OnOpen
-        public void onOpen(Session session) throws IOException {
-            // Get session and WebSocket connection
-        }
+    @OnMessage
+    public void onMessage(String message, Session session) {
+        sendMessageToAll(session.getId() + ": " + message);
+    }
 
-        @OnMessage
-        public void onMessage(Session session, Message message) throws IOException {
-            // Handle new messages
-        }
+    @OnClose
+    public void onClose(Session session) {
+        sessions.remove(session);
+        sendMessageToAll("User disconnected: " + session.getId());
+    }
 
-        @OnClose
-        public void onClose(Session session) throws IOException {
-            // WebSocket connection closes
-        }
+    @OnError
+    public void onError(Throwable t) {
+        t.printStackTrace();
+    }
 
-        @OnError
-        public void onError(Session session, Throwable throwable) {
-            // Do error handling here
+    private void sendMessageToAll(String message) {
+        for (Session session : sessions) {
+            try {
+                session.getBasicRemote().sendText(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
