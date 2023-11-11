@@ -3,9 +3,8 @@ package com.example.hackathon;
 import com.example.hackathon.websocket.Websocket;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
 
 import java.net.URISyntaxException;
 
@@ -17,11 +16,14 @@ public class MainScreenController {
     private Button sendBtn;
     @FXML
     private TextField tf_msg;
+    @FXML
+    private TableView tv_userList;
 
     private Websocket websocketClient;
 
     @FXML
     public void initialize() {
+        tv_userList.setPlaceholder(new Text(""));
         try {
             websocketClient = new Websocket("ws://localhost:8080"); // Replace with your server URL
             websocketClient.connect();
