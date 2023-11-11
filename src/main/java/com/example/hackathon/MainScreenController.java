@@ -32,7 +32,7 @@ public class MainScreenController {
     }
     private void onMessageReceived(String message) {
         Platform.runLater(() -> {
-            chatBox.appendText(message + "\n"); // Assuming chatBox is your TextArea for the chat
+            chatBox.appendText(App.currentUser +": " + message + "\n"); // Assuming chatBox is your TextArea for the chat
         });
     }
 
