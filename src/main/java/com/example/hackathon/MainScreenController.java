@@ -4,6 +4,7 @@ import com.example.hackathon.websocket.Websocket;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 
 import java.net.URISyntaxException;
@@ -31,7 +32,14 @@ public class MainScreenController {
             e.printStackTrace();
         }
         websocketClient.setMessageHandler(this::onMessageReceived);
+
+        tf_msg.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                onSendButtonClick();
+            }
+        });
     }
+
     private void onMessageReceived(String message) {
         Platform.runLater(() -> {
             chatBox.appendText(message + "\n"); // Assuming chatBox is your TextArea for the chat
