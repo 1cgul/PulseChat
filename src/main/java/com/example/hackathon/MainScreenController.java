@@ -1,13 +1,12 @@
 package com.example.hackathon;
 
+import com.example.hackathon.websocket.Websocket;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 public class MainScreenController {
@@ -19,48 +18,26 @@ public class MainScreenController {
     @FXML
     private TextField tf_msg;
 
-    private WebSocketClient webSocketClient;
+    private Websocket websocketClient;
 
-    public MainScreenController() {
-        initializeWebSocketClient();
-    }
-
-    private void initializeWebSocketClient() {
+    @FXML
+    public void initialize() {
         try {
-            webSocketClient = new WebSocketClient(new URI("ws://localhost:8080/chat")) {
-                @Override
-                public void onOpen(ServerHandshake serverHandshake) {
-                    System.out.println("Connected to server");
-                }
-
-                @Override
-                public void onMessage(String message) {
-                    chatBox.appendText("\n" + message);
-                }
-
-                @Override
-                public void onClose(int i, String s, boolean b) {
-                    System.out.println("Disconnected from server");
-                }
-
-                @Override
-                public void onError(Exception e) {
-                    System.out.println("Error occurred: " + e.getMessage());
-                }
-            };
-            webSocketClient.connect();
+            websocketClient = new Websocket("ws://localhost:8080"); // Replace with your server URL
+            websocketClient.connect();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void sendMessage(javafx.event.ActionEvent event) {
-        if (webSocketClient != null && webSocketClient.isOpen()) {
-            webSocketClient.send(App.currentUser + ": " + tf_msg.getText());
-            tf_msg.setText("");
-        } else {
-            chatBox.appendText("\nUnable to send message. Not connected to server.");
-        }
+    protected void onSendButtonClick() {
+        String message = tf_msg.getText();
+        websocketClient.send(message);
+        tf_msg.clear();
+    }
+
+    private void appendMessage(String message) {
+        Platform.runLater(() -> chatBox.appendText(message + "\n"));
     }
 }

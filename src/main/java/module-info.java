@@ -1,8 +1,7 @@
 module com.example.hackathon {
     requires javafx.controls;
     requires javafx.fxml;
-    requires javax.websocket.api;
-    requires org.java_websocket;
+    requires Java.WebSocket;
 
 
     opens com.example.hackathon to javafx.fxml;

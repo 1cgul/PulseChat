@@ -1,49 +1,35 @@
 package com.example.hackathon.websocket;
 
-import javax.websocket.*;
-import javax.websocket.server.ServerEndpoint;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
 
-@ServerEndpoint("/chat")
-public class Websocket {
+import java.net.URI;
+import java.net.URISyntaxException;
 
-    // A set to store all the active sessions
-    private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<>());
+public class Websocket extends WebSocketClient {
 
-    @OnOpen
-    public void onOpen(Session session) {
-        System.out.println("New connection opened");
-        sessions.add(session);
+    public Websocket(String url) throws URISyntaxException {
+        super(new URI(url));
     }
 
-    @OnClose
-    public void onClose(Session session) {
-        System.out.println("Connection closed");
-        sessions.remove(session);
+    @Override
+    public void onOpen(ServerHandshake handshakedata) {
+        System.out.println("Connected to the server");
     }
 
-    @OnError
-    public void onError(Session session, Throwable throwable) {
-        System.out.println("Error occurred: " + throwable.getMessage());
-        sessions.remove(session);
+    @Override
+    public void onMessage(String message) {
+        // Handle incoming messages
+        System.out.println("Received: " + message);
     }
 
-    @OnMessage
-    public void handleMessage(String message, Session session) {
-        System.out.println("New Text Message Received: " + message);
-        broadcast(message);
+    @Override
+    public void onClose(int code, String reason, boolean remote) {
+        System.out.println("Disconnected from the server");
     }
 
-    // Broadcasting the message to all connected sessions
-    private void broadcast(String message) {
-        for (Session session : sessions) {
-            try {
-                session.getBasicRemote().sendText(message);
-            } catch (Exception e) {
-                System.out.println("Failed to send message to session: " + e.getMessage());
-            }
-        }
+    @Override
+    public void onError(Exception ex) {
+        System.err.println("An error occurred:" + ex.getMessage());
     }
 }

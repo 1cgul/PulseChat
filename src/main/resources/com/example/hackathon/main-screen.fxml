@@ -16,7 +16,7 @@
          <font>
             <Font name="Consolas" size="21.0" />
          </font></TextField>
-      <Button fx:id="sendBtn" layoutX="1133.0" layoutY="598.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="42.0" prefWidth="66.0" text="Send">
+      <Button fx:id="sendBtn" layoutX="1133.0" layoutY="598.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="66.0" text="Send">
          <font>
             <Font name="Consolas" size="18.0" />
          </font></Button>
