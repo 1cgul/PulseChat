@@ -31,7 +31,6 @@ public class LoginController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-
         }
         else{
             errorLabel.setText("Your username needs to be greater than 3 characters!");

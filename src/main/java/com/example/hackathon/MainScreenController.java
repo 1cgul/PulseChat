@@ -32,7 +32,7 @@ public class MainScreenController {
     }
     private void onMessageReceived(String message) {
         Platform.runLater(() -> {
-            chatBox.appendText(App.currentUser +": " + message + "\n"); // Assuming chatBox is your TextArea for the chat
+            chatBox.appendText(message + "\n"); // Assuming chatBox is your TextArea for the chat
         });
     }
 
@@ -40,7 +40,7 @@ public class MainScreenController {
     protected void onSendButtonClick() {
         String message = tf_msg.getText(); // Assuming tf_msg is your TextField for input
         if(!message.isEmpty() && websocketClient.isOpen()) { // Check if the client is connected
-            websocketClient.send(message);
+            websocketClient.send(App.currentUser + ": " + message);
             tf_msg.clear(); // Clear the input field
         }
     }
