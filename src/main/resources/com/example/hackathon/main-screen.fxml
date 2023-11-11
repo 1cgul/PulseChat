@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,17 +10,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hackathon.MainScreenController">
    <children>
-      <TextArea fx:id="chatBox" centerShape="false" editable="false" layoutX="95.0" layoutY="70.0" prefHeight="512.0" prefWidth="1112.0" promptText="Welcome to the chatroom!" scaleShape="false" style="-fx-text-fill: #000000">
+      <TextArea fx:id="chatBox" centerShape="false" editable="false" layoutX="54.0" layoutY="70.0" prefHeight="512.0" prefWidth="881.0" promptText="Welcome to the chatroom!" scaleShape="false" style="-fx-text-fill: white;">
          <font>
             <Font name="Consolas" size="17.0" />
-         </font></TextArea>
-      <TextField fx:id="tf_msg" layoutX="95.0" layoutY="591.0" prefHeight="57.0" prefWidth="1112.0" promptText="Enter a message.">
+         </font>
+      </TextArea>
+      <TextField fx:id="tf_msg" layoutX="53.0" layoutY="591.0" prefHeight="58.0" prefWidth="882.0" promptText="Enter a message.">
          <font>
             <Font name="Consolas" size="21.0" />
          </font></TextField>
-      <Button onAction="#onSendButtonClick" fx:id="sendBtn" layoutX="1133.0" layoutY="598.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="66.0" text="Send">
+      <Button fx:id="sendBtn" layoutX="859.0" layoutY="599.0" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="42.0" prefWidth="66.0" text="Send">
          <font>
             <Font name="Consolas" size="18.0" />
          </font></Button>
+      <TableView fx:id="tv_userList" layoutX="964.0" layoutY="70.0" prefHeight="512.0" prefWidth="282.0">
+        <columns>
+          <TableColumn editable="false" minWidth="0.0" prefWidth="0.0" sortType="DESCENDING" text="Users inchat:" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

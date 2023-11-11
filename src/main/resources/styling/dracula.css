@@ -964,11 +964,12 @@ Text {
   -color-cell-bg-odd: -color-bg-subtle;
   -color-cell-border: -color-border-default;
   -color-disclosure: -color-fg-muted;
-  -fx-border-color: -color-cell-border;
+  -fx-border-color: -color-bg-default;
   -fx-border-width: 1px;
   -fx-border-radius: 0;
   -color-header-bg: -color-bg-subtle;
   -color-header-fg: -color-fg-default;
+  -fx-background-color: -color-bg-default;
 }
 .table-view > .virtual-flow > .corner {
   -fx-background-color: -color-cell-border;
@@ -2661,6 +2662,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-cursor: default;
 }
 .text-area .content {
+  -fx-background-color: -color-bg-default;
   -fx-cursor: text;
   -fx-padding: 8px 12px 8px 12px;
 }
