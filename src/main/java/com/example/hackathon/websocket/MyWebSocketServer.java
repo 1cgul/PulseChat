@@ -13,7 +13,8 @@ public class MyWebSocketServer extends WebSocketServer {
 
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
-        System.out.println("New connection from " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
+        String userJoinedMessage = conn.getRemoteSocketAddress().getAddress().getHostAddress() + " joined the chatroom!";
+        broadcast(userJoinedMessage);
     }
 
     @Override

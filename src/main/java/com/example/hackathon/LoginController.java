@@ -52,9 +52,4 @@ public class LoginController {
         }
     }
 
-    @FXML
-    void Login(ActionEvent event) {
-        User userToLogin = new User(tf_username.getText());
-
-    }
 }

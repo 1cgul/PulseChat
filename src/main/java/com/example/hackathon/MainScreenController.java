@@ -28,12 +28,10 @@ public class MainScreenController {
         try {
             websocketClient = new Websocket("ws://localhost:8080"); // Replace with your server URL
             websocketClient.connect();
-
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         websocketClient.setMessageHandler(this::onMessageReceived);
-        onMessageReceived(App.currentUser + " has joined!");
         tf_msg.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 onSendButtonClick();
@@ -43,16 +41,23 @@ public class MainScreenController {
 
     private void onMessageReceived(String message) {
         Platform.runLater(() -> {
-            chatBox.appendText(message + "\n"); // Assuming chatBox is your TextArea for the chat
+            chatBox.appendText(message + "\n");
         });
     }
 
     @FXML
     protected void onSendButtonClick() {
-        String message = tf_msg.getText(); // Assuming tf_msg is your TextField for input
+        String message = tf_msg.getText();
         if(!message.isEmpty() && websocketClient.isOpen()) { // Check if the client is connected
             websocketClient.send(App.currentUser + ": " + message);
             tf_msg.clear(); // Clear the input field
+        }
+    }
+    @FXML
+    protected void onUserJoin() {
+        String message = App.currentUser + " has joined!";
+        if(websocketClient.isOpen()) { // Check if the client is connected
+            websocketClient.send(message);
         }
     }
 
