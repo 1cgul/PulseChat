@@ -1,12 +1,16 @@
 package com.example.hackathon.websocket;
 
+import com.example.hackathon.User;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.function.Consumer;
 
 public class Websocket extends WebSocketClient {
+    private Consumer<User> onUserConnected;
+    private Consumer<User> onUserDisconnected;
     public interface MessageHandler {
         void handleMessage(String message);
     }
@@ -41,4 +45,5 @@ public class Websocket extends WebSocketClient {
     public void onError(Exception ex) {
         System.err.println("An error occurred:" + ex.getMessage());
     }
+
 }

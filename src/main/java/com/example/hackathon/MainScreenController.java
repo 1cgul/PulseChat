@@ -28,11 +28,12 @@ public class MainScreenController {
         try {
             websocketClient = new Websocket("ws://localhost:8080"); // Replace with your server URL
             websocketClient.connect();
+
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         websocketClient.setMessageHandler(this::onMessageReceived);
-
+        onMessageReceived(App.currentUser + " has joined!");
         tf_msg.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 onSendButtonClick();

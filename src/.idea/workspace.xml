@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d22787-d6da-4a5b-98d7-b6cffddf5ec5" name="Changes" comment="" />
+    <list default="true" id="97d22787-d6da-4a5b-98d7-b6cffddf5ec5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/main/java/com/example/hackathon/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/example/hackathon/MainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/example/hackathon/websocket/Websocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/example/hackathon/websocket/Websocket.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +24,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/vippe/Documents/code/java/PulseChat/src",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/reluc/Desktop/code/school repos/PulseChat/src",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
