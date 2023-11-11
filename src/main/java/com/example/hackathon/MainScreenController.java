@@ -28,14 +28,23 @@ public class MainScreenController {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        websocketClient.setMessageHandler(this::onMessageReceived);
+    }
+    private void onMessageReceived(String message) {
+        Platform.runLater(() -> {
+            chatBox.appendText(message + "\n"); // Assuming chatBox is your TextArea for the chat
+        });
     }
 
     @FXML
     protected void onSendButtonClick() {
-        String message = tf_msg.getText();
-        websocketClient.send(message);
-        tf_msg.clear();
+        String message = tf_msg.getText(); // Assuming tf_msg is your TextField for input
+        if(!message.isEmpty() && websocketClient.isOpen()) { // Check if the client is connected
+            websocketClient.send(message);
+            tf_msg.clear(); // Clear the input field
+        }
     }
+
 
     private void appendMessage(String message) {
         Platform.runLater(() -> chatBox.appendText(message + "\n"));

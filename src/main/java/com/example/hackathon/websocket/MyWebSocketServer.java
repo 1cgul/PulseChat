@@ -22,8 +22,10 @@ public class MyWebSocketServer extends WebSocketServer {
     }
 
     @Override
-    public void onMessage(WebSocket webSocket, String s) {
-
+    public void onMessage(WebSocket conn, String message) {
+        for (WebSocket client : getConnections()) {
+            client.send(message);
+        }
     }
 
     @Override

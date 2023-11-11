@@ -7,6 +7,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Websocket extends WebSocketClient {
+    public interface MessageHandler {
+        void handleMessage(String message);
+    }
 
     public Websocket(String url) throws URISyntaxException {
         super(new URI(url));
@@ -16,11 +19,17 @@ public class Websocket extends WebSocketClient {
     public void onOpen(ServerHandshake handshakedata) {
         System.out.println("Connected to the server");
     }
+    private MessageHandler messageHandler;
+
+    public void setMessageHandler(MessageHandler handler) {
+        this.messageHandler = handler;
+    }
 
     @Override
     public void onMessage(String message) {
-        // Handle incoming messages
-        System.out.println("Received: " + message);
+        if (messageHandler != null) {
+            messageHandler.handleMessage(message);
+        }
     }
 
     @Override
